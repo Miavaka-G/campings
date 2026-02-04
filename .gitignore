@@ -1,0 +1,7 @@
+.env
+devconfig.txt
+prodconfig.txt
+geckodriver.log
+
+g2a-v3/__pycache__/
+tools/__pycache__/
