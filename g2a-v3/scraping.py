@@ -11,6 +11,9 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import ElementNotVisibleException, ElementNotSelectableException
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+from dotenv import load_dotenv
+
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.service import Service as FirefoxService
@@ -28,6 +31,9 @@ from tools.g2a import G2A
 from tools.changeip import refresh_connection
 import csv
 
+load_dotenv()
+
+SYSTEM = os.environ.get('SYSTEM')
 
 class Scraping(object):
 
@@ -53,8 +59,14 @@ class Scraping(object):
         # self.driver = webdriver.Firefox(service=FirefoxService(
         #             GeckoDriverManager().install()), options=self.firefox_options)
 
-        self.driver = webdriver.Chrome(options=self.chrome_options)   
+        #04 02 2026
+        if SYSTEM == "windows":
+            self.driver = webdriver.Chrome(options=self.chrome_options)   
+        elif SYSTEM == "linux":
+            self.driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()),options=self.chrome_options)
         self.driver.maximize_window()
+
+        
         self.drivers = ['chrome', 'firefox']
         self.current_driver = self.drivers[0]
 
