@@ -4,4 +4,6 @@ prodconfig.txt
 geckodriver.log
 
 g2a-v3/__pycache__/
-tools/__pycache__/
+g2a-v3/tools/__pycache__/
+
+g2a-v3/statics/
